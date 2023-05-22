@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Minecraft mini-calculator</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <h1>This is my site with some Minecraft mini-calculators that I made for myself</h1>
+    <p>Ticks to hours:</p>
+    <div>
+        <input type="text" id="tickInput" placeholder="Введите текст" style="float: left;">
+        <button onclick="tickCalculator()" style="float: left;">Отправить</button>
+        <div style="clear: both;"></div>
+      </div>
+
+
+      <div id="resultHoursFormated"></div>
+      <div id="resultDays"></div>
+
+      <script>
+        function tickCalculator() {
+          var inputTicksOriginal = document.getElementById("tickInput").value;
+          if (isNaN(inputTicksOriginal)) {
+            document.getElementById("resultHours").innerText = "Ошибка: введите число";
+            document.getElementById("resultDays").innerText = "";
+          } else {
+            var resultTicksToHours = inputTicksOriginal / 20 / 60 / 60;
+            resultTicksToHours = resultTicksToHours.toFixed(3);
+            var hours = Math.floor(resultTicksToHours);
+            var minutes = Math.floor((resultTicksToHours - hours) * 60);
+            var seconds = Math.floor(((resultTicksToHours - hours) * 60 - minutes) * 60);
+            var formattedResult = "Result is " + resultTicksToHours + " hours, or " + hours + " hours, " + minutes + " minutes and " + seconds + " seconds";
+            document.getElementById("resultHoursFormated").innerText = formattedResult;
+            var resultHoursToDays = resultTicksToHours * 60 / 20;
+            resultHoursToDays = resultHoursToDays.toFixed(3);
+            document.getElementById("resultDays").innerText = "Result in days: " + resultHoursToDays + " minecraft days";
+          }
+        }
+      </script>
+  </body>
+</html>
