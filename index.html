@@ -2,40 +2,55 @@
 <html>
   <head>
     <title>Minecraft mini-calculator</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <h1>This is my site with some Minecraft mini-calculators that I made for myself</h1>
-    <p>Ticks to hours:</p>
+
+
+    <h1>Minecraft mini-calculators</h1>
+    <h2>
+      This is my site with some Minecraft mini-calculators that I made for
+      myself
+    </h2>
+    <h3>Ticks to hours:</h3>
     <div>
-        <input type="text" id="tickInput" placeholder="Введите текст" style="float: left;">
-        <button onclick="tickCalculator()" style="float: left;">Отправить</button>
-        <div style="clear: both;"></div>
-      </div>
+      <input
+        type="text"
+        id="tickInput"
+        placeholder="Ticks"
+        style="float: left"
+      />
+      <button onclick="tickCalculator()" style="float: left">Calculate</button>
+      <div style="clear: both"></div>
+    </div>
 
+    <div id="resultHoursFormatted"></div>
+    <div id="resultDays"></div>
 
-      <div id="resultHoursFormated"></div>
-      <div id="resultDays"></div>
+    <div style="margin-top: 70px">
+      <h3>Nether to Overworld:</h3>
+    </div>
 
-      <script>
-        function tickCalculator() {
-          var inputTicksOriginal = document.getElementById("tickInput").value;
-          if (isNaN(inputTicksOriginal)) {
-            document.getElementById("resultHours").innerText = "Ошибка: введите число";
-            document.getElementById("resultDays").innerText = "";
-          } else {
-            var resultTicksToHours = inputTicksOriginal / 20 / 60 / 60;
-            resultTicksToHours = resultTicksToHours.toFixed(3);
-            var hours = Math.floor(resultTicksToHours);
-            var minutes = Math.floor((resultTicksToHours - hours) * 60);
-            var seconds = Math.floor(((resultTicksToHours - hours) * 60 - minutes) * 60);
-            var formattedResult = "Result is " + resultTicksToHours + " hours, or " + hours + " hours, " + minutes + " minutes and " + seconds + " seconds";
-            document.getElementById("resultHoursFormated").innerText = formattedResult;
-            var resultHoursToDays = resultTicksToHours * 60 / 20;
-            resultHoursToDays = resultHoursToDays.toFixed(3);
-            document.getElementById("resultDays").innerText = "Result in days: " + resultHoursToDays + " minecraft days";
-          }
-        }
-      </script>
+    <div>
+      <p> <b>Overworld coordinates:</b> </p>
+      <label for="overworld-x">X:</label>
+      <input type="text" class="input-field" id="overworld-x" oninput="updateNetherCoords()" />
+      <label for="overworld-y">Y:</label>
+      <input type="text" class="input-field" id="overworld-y" oninput="updateNetherCoords()" />
+      <label for="overworld-z">Z:</label>
+      <input type="text" class="input-field" id="overworld-z" oninput="updateNetherCoords()" />
+    </div>
+    <div>
+      <p> <b> Nether coordinates: </b></p>
+      <label for="nether-x">X:</label>
+      <input type="text" class="input-field" id="nether-x" oninput="updateOverworldCoords()" />
+      <label for="nether-y">Y:</label>
+      <input type="text" class="input-field" id="nether-y" oninput="updateOverworldCoords()" />
+      <label for="nether-z">Z:</label>
+      <input type="text" class="input-field" id="nether-z" oninput="updateOverworldCoords()" />
+    </div>
+    
+
+    <script src="script.js"></script>
   </body>
 </html>
